@@ -5,7 +5,7 @@ from django.urls import reverse
 class Category(models.Model):
     name = models.CharField(max_length=50)
     slug = models.SlugField(max_length=50,
-        help_text = 'Unique value for product page URL, created from name.')
+        help_text = 'یک نام منحصر به فرد که از نام محصول ساخته شده.')
     description = models.TextField()
     is_active = models.BooleanField(default = True)
     meta_keywords = models.CharField("Meta keywords",max_length=255,
@@ -30,7 +30,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=255, unique=True)
     slug = models.SlugField(max_length=255, unique=True,
-        help_text='Unique value for product page URL, created from name.')
+        help_text='یک نام منحصر به فرد که از نام محصول ساخته شده')
     brand = models.CharField(max_length=50)
     sku = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=9,decimal_places=2)
