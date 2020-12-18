@@ -1,0 +1,28 @@
+{% extends 'Userdata/base.html' %}
+{% load static %}
+{% block title %}ثبت نام{% endblock %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="{% static 'accounts/signupstyle.css' %}" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
+{% block content %}
+<body style="background-color:#3b3938;">
+    <div id="signup">
+        <h3 class="text-center text-white pt-5">Rgister Form</h3>
+        <div class="container">
+            <div id="signup-row" class="row justify-content-center align-items-center">
+                <div id="signup-column" class="col-md-6">
+                    <div id="signup-box" class="col-md-12">
+                        <form id="signup-form" class="form" action="" method="post">
+                            {% csrf_token %}
+                            <h3 class="text-center text-info">ثبت نام</h3>
+                            {{ form.as_p }}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+</body>

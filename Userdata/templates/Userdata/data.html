@@ -1,0 +1,22 @@
+{% extends "Userdata/base.html" %}
+{% block title %} user data {% endblock title %}
+{% block nav-style %} mkt-nav {% endblock nav-style %}
+
+{% block content %}
+
+{% if error %}
+{{ error }}
+{% endif %}
+<div class="container-fluid" style="max-width: 1000px;">
+    <div id="data-box" class="col-md-12">
+        <form id="data-form" class="form" action="" method="post">
+            {% csrf_token %}
+            <h3 class="text-center text-info">اطلاعات خود را وارد کنید</h3>
+            {{ form.as_p }}
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock content %}
