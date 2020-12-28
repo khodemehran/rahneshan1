@@ -51,7 +51,7 @@ class PlanetData(models.Model):
                                  help_text='اگر سن گیاه به صورت بخش بندی باشد', 
                                 blank = True,
                                     )
-    #Age_Numberic = models.IntegerField(help_text='اگر سن گیاه به صورت عددی باشد.')
+    Age_Numberic = models.IntegerField(help_text='اگر سن گیاه به صورت عددی باشد.')
     Weather = models.CharField(max_length=3,
                                 help_text='شرایط آب و هوایی منطقه کاربر.',
                                 choices=WEATHER_CHOICES,
@@ -80,9 +80,15 @@ class PlanetData(models.Model):
         
     
 
+class Contact(models.Model):
+
+    name = models.CharField(max_length=254)
+    Email_field = models.EmailField(max_length=254)
+    content = models.CharField(max_length=254)
 
 
-
+    def str(self):
+        return self.name
     
 
     

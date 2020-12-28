@@ -2,60 +2,61 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth.forms import UserCreationForm
+from .forms import AuthForm
+from django.contrib.auth import logout
 
 # Create your views here.
 def loginview(request):
     if request.method == 'POST':
-        form = AuthenticationForm(request.POST)
+        form = AuthForm(request=request, data=request.POST)
         if form.is_valid():
-            return redirect('home')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(username=username, password=password)
+            #print('ta inja miad')
+            if user is not None:
+                login(request, user)
+                #if 'next' in request.POST:
+                    #return redirect(request.POST['next'])
+                #else:
+                    #redirect('user_data')
+                nxt = request.GET.get("next", None)
+                url = '/userdata/user_data'
+                if nxt is not None:
+                    url += '?next=' + nxt
+                    return redirect(url)
+                else:
+                    return redirect('home')
+
+            else:
+                return  render(request,'accounts/login.html',{'form':form, 'error':'نام کاربری و رمز عبور مطابقت ندارد'})
+        #else:
+            #print("ولید نیست")
+
     else:
-        form = AuthenticationForm()
+        form = AuthForm()
     return  render(request,'accounts/login.html',{'form':form})
 
 
 
 def signup(request):
-    firstname=''
-    lastname=''
-    emailvalue=''
-    uservalue=''
-    passwordvalue1=''
-    passwordvalue2=''
-
-    form= SignUpForm(request.POST or None)
-    if form.is_valid():
-        fs = form.save(commit=False)
-        firstname = form.cleaned_data.get("first_name")
-        lastname = form.cleaned_data.get("last_name")
-        emailvalue = form.cleaned_data.get("email")
-        uservalue = form.cleaned_data.get("username")
-        passwordvalue1 = form.cleaned_data.get("password1")
-        passwordvalue2 = form.cleaned_data.get("password2")
-        if passwordvalue1 == passwordvalue2:
-            try:
-                user= User.objects.get(username=uservalue)
-                context= {'form': form, 'error':'The username you entered has already been taken. Please try another username.'}
-                return render(request, 'accounts/signup.html', context)
-            except User.DoesNotExist:
-                user = User.objects.create_user(username = uservalue, password= passwordvalue1, email=emailvalue)
-                user.save()
-                login(request, user)
-                fs.user= request.user
-                fs.save()
-                context= {'form': form}
-                return render(request, 'accounts/signup.html', context)
-            
-        else:
-            context= {'form': form, 'error':'The passwords that you provided don\'t match'}
-            return render(request, 'accounts/signup.html', context)
-        
-
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
+            return redirect('home')
     else:
-        context= {'form': form}
-        #return render(request, 'siteusers/signup.html', context)
-        return render(request,'accounts/signup.html', context)
+        form = SignUpForm()
+    return render(request, 'accounts/signup.html', {'form': form})
+
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
     
     
