@@ -57,3 +57,5 @@ def contact(request):
 
 def home(request):
     return render(request, 'Userdata/home.html')
+
+

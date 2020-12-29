@@ -42,7 +42,6 @@ class PlanetData(models.Model):
                      ]
     
     #define models here 
-
     Category = models.CharField(max_length=3,choices=PLANET_CHOICES, default="GOLKHANE")
     User = models.ForeignKey(User, on_delete = models.CASCADE)
     Name = models.CharField(max_length=150,help_text='نام گیاه')
