@@ -22,4 +22,5 @@ urlpatterns = [
     path('accounts/',include('accounts.urls')),
     path('userdata/',include('Userdata.urls')),
     path('djrichtextfield/', include('djrichtextfield.urls')),
+    path('formola/',include('formola.urls')),
 ]
