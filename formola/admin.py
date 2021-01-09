@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import AdminSite
-from .models import formola
+from .models import formola,userinput
 from django.utils.translation import ugettext_lazy
 # Register your models here.
 #@admin.register(Category)
@@ -21,3 +21,4 @@ from django.utils.translation import ugettext_lazy
     #date_hierarchy = 'created_at'
     #ordering = ('created_at',)
 admin.site.register(formola)
+admin.site.register(userinput)

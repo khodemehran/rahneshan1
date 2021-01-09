@@ -24,10 +24,12 @@ class formola(models.Model):
         ETMAM_BARDASHT = 'EB',_('مرحله رشدي تشکیل میوه تا اتمام برداشت ')
         DO_HAFTE_AVAL = 'DH',_('دو هفته اول')
         ROSH_ROYESHI = 'RY',_('رشد رویشی')
+        POR_SHODAN_GHODE = 'PS',_('مرحله تشکیل و پر شدن غده')
+        BOLOGH_GHODE = 'BG',_('بلوغ غده')
         GOL_DEHI_TA_AVALIN_MIVE = 'GM',_('گلدهی تا تشکیل اولین میوه')
         TASHKIL_MIVE_TA_BARDASHT = 'TB',_('تشکیل میوه تا اولین برداشت')
         NESHA_TA_AVALIN_GOL = 'NT',_('نشا تا ظهور اولین گل')
-        BAD_AZ_GOLDEHI = 'BG',_('بعد از گلدهی')
+        BAD_AZ_GOLDEHI = 'BA',_('بعد از گلدهی')
         PAS_AZ_KASHT = 'PA',_('پس از کاشت')
         ROSHD_MIVE = 'RM',_('رشد میوه')
         CHIN_AVAL = 'CA',_('چین اول')
@@ -42,9 +44,15 @@ class formola(models.Model):
         FELFEL_HIDRO = 'FH', _('فلفل دلمه هیدرو پونیک')
         GOJE_MAZRAE = 'GM',_('گوجه فرنگی مذرعه')
         GOJE_HIDRO = 'GH',_('گوجه فرنگی هیدروپونیک ')
+        GOJE_GOL = 'GG',_('گوجه گلخانه ای')
+        SIB_ZAMINI = 'SZ',_('سیب زمینی')
+
     roshd_time = models.CharField(max_length=2, choices
     =roshd.choices,default=roshd.GHABL_KESHT)
     name = models.CharField(max_length=2, choices=Name.choices,default=Name.KHIAR_GOL)
+    nitrat_maniaziom = models.CharField(max_length=100,help_text='نیترات منیزیم' ,null=True, blank=True)
+    solfat_potasiom = models.CharField(max_length=100,help_text='سولفات پتاسیم' ,null=True, blank=True)
+    mono_potasiom_fosfat = models.CharField(max_length=100,help_text='مونو پتاسیم فسفات' ,null=True, blank=True)
     solfat_manianziom = models.CharField(max_length=100,help_text='سولفات منیزیم' ,null=True, blank=True)
     nitrat_potasiom = models.CharField(max_length=100,help_text='نیترات پتاسیم' ,null=True, blank=True)
     nitrat_calsiom = models.CharField(max_length=100,help_text='نیترات کلسیم' ,null=True, blank=True)
@@ -76,7 +84,7 @@ class formola(models.Model):
     molibden = models.CharField(max_length=100,help_text='مولیبدن', null=True, blank=True)   
     roy = models.CharField(max_length=100,help_text='روی', null=True, blank=True)
     ahan = models.CharField(max_length=100, help_text='آهن', null=True, blank=True)
-    content = RichTextField(help_text='توضیحات اضافه', default= 'null')
+    content = models.TextField(help_text='توضیحات اضافه',default="*")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     class Meta:
@@ -86,7 +94,11 @@ class formola(models.Model):
     def __str__(self):
         return self.get_name_display() +'|'+ self.get_roshd_time_display()
 
-    
+    def giah_name(self):
+        return self.get_name_display()
+
+    def giah_roshd_time(self):
+        return self.get_roshd_time_display()
 
 
 
@@ -102,10 +114,12 @@ class userinput(models.Model):
         ETMAM_BARDASHT = 'EB',_('مرحله رشدي تشکیل میوه تا اتمام برداشت ')
         DO_HAFTE_AVAL = 'DH',_('دو هفته اول')
         ROSH_ROYESHI = 'RY',_('رشد رویشی')
+        POR_SHODAN_GHODE = 'PS',_('مرحله تشکیل و پر شدن غده')
+        BOLOGH_GHODE = 'BG',_('بلوغ غده')
         GOL_DEHI_TA_AVALIN_MIVE = 'GM',_('گلدهی تا تشکیل اولین میوه')
         TASHKIL_MIVE_TA_BARDASHT = 'TB',_('تشکیل میوه تا اولین برداشت')
         NESHA_TA_AVALIN_GOL = 'NT',_('نشا تا ظهور اولین گل')
-        BAD_AZ_GOLDEHI = 'BG',_('بعد از گلدهی')
+        BAD_AZ_GOLDEHI = 'BA',_('بعد از گلدهی')
         PAS_AZ_KASHT = 'PA',_('پس از کاشت')
         ROSHD_MIVE = 'RM',_('رشد میوه')
         CHIN_AVAL = 'CA',_('چین اول')
@@ -120,9 +134,11 @@ class userinput(models.Model):
         FELFEL_HIDRO = 'FH', _('فلفل دلمه هیدرو پونیک')
         GOJE_MAZRAE = 'GM',_('گوجه فرنگی مذرعه')
         GOJE_HIDRO = 'GH',_('گوجه فرنگی هیدروپونیک ')
+        GOJE_GOL = 'GG',_('گوجه گلخانه ای')
+        SIB_ZAMINI = 'SZ',_('سیب زمینی')
 
     Roshd_date = models.CharField(max_length=2,choices=Roshd.choices,default=Roshd.KESHT_BAHARE)
     name = models.CharField(max_length=2, choices=Name.choices,default=Name.KHIAR_GOL)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-        return self.name
+        return self.get_name_display()
