@@ -1,50 +1,27 @@
 from django.shortcuts import render
-from .forms import Planet_Form
-from .models import PlanetData
+from django.contrib.auth.decorators import login_required
+from .forms import Planet_Form, ContactForm
+from .models import PlanetData, Contact
+
 
 
 # Create your views here.
 
-
+@login_required(login_url='login')
 def user_data(request):
-    form = Planet_Form(request.POST)
     if request.method == 'POST':
+        form = Planet_Form(request.POST)
         if form.is_valid():
             fs = form.save(commit=False)
-            Category = form.cleaned_data.get('Category')
-            Name = form.cleaned_data.get('Name')
-            Age_Stirng = form.cleaned_data.get('Age_string')
-            Age_Numberic = form.cleaned_data.get('Age_Numberic')
-            Weather = form.cleaned_data.get('Weather')
-            Water = form.cleaned_data.get('Water')
-            Area = form.cleaned_data.get('Area')
-            #model
-            PlanetData = PlanetData()
-            PlanetData.Age_Numberic = Age_Numberic
-            PlanetData.Age_Stirng = Age_Stirng
-            PlanetData.Area = Area
-            PlanetData.Weather = Weather
-            PlanetData.Category = Category
-            PlanetData.Name = Name 
-            PlanetData.Water = Water
-            if Age_Stirng and Age_Numberic:
-                context = {
-                            'form':form,
-                            'error':'you can not fill both field ',
-                           }
-                return render(request, 'your template', context)
-
-            else:
-                PlanetData.save()
-                fs.save()
-                context = {
-                    'form':form,
-                    'error':'your data have been saved',
-                }
-
-                return render(request, 'Userdata/data.html', context)
-
+            fs.User = request.user
+            fs.save()
+            context = {
+                'form':form,
+                'error':'اطلاعات شما با موفقیت ذخیره شد',
+            }
+            return render(request, 'Userdata/data.html', context)
     else:
+        form = Planet_Form()
         context = {
             'form':form
                   }
@@ -56,5 +33,29 @@ def user_data(request):
 
             
 
-
+def about(request):
+    return render(request, 'Userdata/about.html')
             
+
+def contact(request):
+    form = ContactForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid:
+            form.save()
+            context = {
+                'form':form,
+                'error':'با موفقیت ثبت شد'
+            }
+            return render(request, 'Userdata/contact.html',context)
+
+
+
+        
+    
+    return render(request, 'Userdata/contact.html',{'form':form})
+
+
+def home(request):
+    return render(request, 'Userdata/home.html')
+
+

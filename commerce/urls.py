@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.conf.urls import handler404, handler500
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('product/',include('Product.urls')),
     path('accounts/',include('accounts.urls')),
     path('userdata/',include('Userdata.urls')),
+    path('djrichtextfield/', include('djrichtextfield.urls')),
+    path('formola/',include('formola.urls')),
 ]
+

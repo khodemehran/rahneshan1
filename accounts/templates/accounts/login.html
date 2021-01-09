@@ -12,16 +12,29 @@
 {% if error %}
 {{ error }}
 {% endif %}
-<div class="container" style="max-width: 700px;margin: auto;">
-    <div class="container-fluid" style="max-width: 1000px;">
-        <div id="data-box" class="col-md-12">
-            <form id="data-form" class="form" action="" method="post">
-                {% csrf_token %}
-                <h3 class="text-center text-info">ورود</h3>
-                {{ form.as_p }}
-                <input type="submit">
-            </form>
+
+
+<form action="{% url 'login' %}" role="form" class="col-lg-6 offset-lg-3" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="row justify-content-center mb-3"><b>ورود</b> </div>
+        {% for field in form %}
+            <div class="input-group w-50" style="margin-left: 160px;">
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="row justify-content-center mt-3">
+                {% if request.GET.next %}
+                <input type="hidden" name='next' value={{ request.GET.next }}/>
+                {% endif %}
+            <input type="submit" class="btn btn-primary" value="تایید" />
         </div>
     </div>
-</div>
+</form>
+
 {% endblock content %}
+
+
+
+

@@ -1,0 +1,182 @@
+{% extends 'Userdata/base.html' %}
+{% load static %}
+{% block title %} ورودی کاربر {% endblock %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!------ Include the above in your HEAD tag ---------->
+{% block content %}
+{% if Obj %}
+<div class="container" dir="rtl">
+    <div class="row justify-content-center mb-3">
+        <div class="bg-muted">
+        <span style="color: #11D220;margin-right: 15px;"><i class="fa fa-leaf" aria-hidden="true"></i></span> <b>{{ Obj.giah_name }} |
+        {{ Obj.giah_roshd_time }}</b></div>
+    </div>
+
+<table class="table table-striped" dir="rtl">
+    <tr>
+      <th class="text-danger"><span style="margin-left: 5px;"><img style="width: 25px;"src="https://img.icons8.com/cotton/64/000000/sugar-sack--v2.png"/></span>نام کود</th>
+      <th class="text-danger">مقادیر</th>
+    </tr>
+    <tr>
+        <td>سولفات منیزیم</td>
+        <td>{{ Obj.solfat_manianziom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>نیترات پتاسیم</td>
+        <td>{{ Obj.nitrat_potasiom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>نیتروژن</td>
+        <td>{{ Obj.nitrozhen|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>کلات آهن</td>
+        <td>{{ Obj.kalat_ahan|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+      <td>نیترات کلسیم</td>
+      <td>{{ Obj.nitrat_calsiom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>فسفر</td>
+        <td>{{ Obj.fosfor|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>پتاسیم</td>
+        <td>{{ Obj.potasiom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>کلسیم</td>
+        <td>{{ Obj.calsiom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>منیزیم</td>
+        <td>{{ Obj.maniaziom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>اوره</td>
+        <td>{{ Obj.ore|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>دی آمونیوم فسفات</td>
+        <td>{{ Obj.diamoniomfosfat|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سوپر فسفات پربپل</td>
+        <td>{{ Obj.soperfosfattripl|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سوکسترین آهن</td>
+        <td>{{ Obj.sokesterinahan|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سولفات منگنز</td>
+        <td>{{ Obj.solfatmanganez|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سولفات روی</td>
+        <td>{{ Obj.solfatroy|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سولفات مس</td>
+        <td>{{ Obj.solfatmes|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>اسید بوریک</td>
+        <td>{{ Obj.asidborik|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>سولفات منیزیم</td>
+        <td>{{ Obj.solfatmaniaziom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>پتاسیم فسفات</td>
+        <td>{{ Obj.potasiomfosfat|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>نیترات آمونیم</td>
+        <td>{{ Obj.nitratamoniom|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>پتاسیم اکسید</td>
+        <td>{{ Obj.potasiomoksid|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>فسفات</td>
+        <td>{{ Obj.fosfat|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>نیتروژن نیتراتی</td>
+        <td>{{ Obj.nitrozhennitarti|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>نیتروژن آمونیومی</td>
+        <td>{{ Obj.nitrozhenamoniomi|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>گوگرد</td>
+        <td>{{ Obj.gogerd|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>بور</td>
+        <td>{{ Obj.bor|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>مس</td>
+        <td>{{ Obj.mes|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>منگنز</td>
+        <td>{{ Obj.manganez|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>مولیبدن</td>
+        <td>{{ Obj.molibden|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>روی</td>
+        <td>{{ Obj.roy|default_if_none:"*" }}</td>
+    </tr>
+    <tr>
+        <td>آهن</td>
+        <td>{{ Obj.ahan|default_if_none:"*" }}</td>
+    </tr>
+  </table>
+{{ Obj.content }}
+</div>
+  {% endif %}
+
+<form class="col-lg-6 offset-lg-3" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        <div class="row justify-content-center mb-3"><b> اطلاعات گیاه</b> <span style="margin-left: 5px;margin-bottom: 10px;"><img style="width: 25px;"src="https://img.icons8.com/fluent/48/000000/potted-plant.png"></div>
+
+            {% if error %}
+            <div class="d-flex justify-content-center">
+                <div class="alert alert-warning" role="alert">{{ error|escape }}</div>
+                {% endif %}
+            </div>
+            {% for field in form %}
+            <div class="input-group w-50" style="margin-left: 160px;">
+                {{ field }}
+            </div>
+            <div class="row justify-content-center mb-3">
+            {{ field.errors }}
+            </div>
+        {% endfor %}
+        <div class="row justify-content-center mt-3">
+            <input type="submit" class="btn btn-primary" value="تایید" />
+        </div>
+            {% if msg %}
+            <div class="d-flex justify-content-center mt-3">
+                <div class="alert alert-success" role="alert">{{ msg }}</div>
+            </div>
+            {% endif %}
+        </div>      
+</form>
+
+{% endblock content %}

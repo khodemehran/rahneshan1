@@ -1,0 +1,44 @@
+{% extends "Userdata/base.html" %}
+{% block title %} تماس با ما {% endblock title %}
+{% block nav-style %} mkt-nav {% endblock nav-style %}
+{% block CSS %}
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('https://source.unsplash.com/miVlU6xargI/1920x1080');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+{% endblock CSS %}
+{% block content %}
+
+
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 text-center ">
+            <div class="container-fluid" style="max-width: 1000px;">
+                <div id="data-box" class="col-md-12 w-50">
+                    {% if error %}
+                    <div class="alert alert-success" role="alert">{{ error }}</div>
+                    {% endif %}
+                    <form id="data-form" class="form" action="" method="post">
+                        {% csrf_token %}
+                        <h3 style="color: beige !important;"class="text-center text-info m-3">فرم تماس با ما</h3>
+                        {% for field in form %}
+                        {{ field }}
+                        {% endfor %}
+                        <div class = "d-flex justify-content-center">
+                        <button type="submit" class="btn btn-primary m-3">تایید</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</header>
+
+{% endblock content %}
+

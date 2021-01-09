@@ -1,0 +1,28 @@
+{% extends "Userdata/base.html" %}
+{% load static %}
+{% block title %} ورود {% endblock title %}
+{% block nav-style %} mkt-nav {% endblock nav-style %}
+{% block CSS %}
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('https://source.unsplash.com/miVlU6xargI/1920x1080');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+{% endblock CSS %}
+{% block content %}
+<header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12 text-center ">
+          <h1 class="font-weight-light text-light"><b>سامانه تنظیم خودکار برنامه زمانبندی <br>آبیاری و تغذیه (کودآبیاری) زمین های کشاورزی و گلخانه ای</b></h1>
+          <a href="{% url 'userinput' %}"><button class="btn btn-muted border-25 ">دریافت برنامه</button></a>
+        </div>
+      </div>
+    </div>
+</header>
+{% endblock content %}
+
+

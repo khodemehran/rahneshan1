@@ -1,18 +1,26 @@
 {% extends "Userdata/base.html" %}
-{% block title %} user data {% endblock title %}
+{% block title %} اطلاعات کاربر {% endblock title %}
 {% block nav-style %} mkt-nav {% endblock nav-style %}
 
 {% block content %}
 
-{% if error %}
-{{ error }}
-{% endif %}
+
 <div class="container-fluid" style="max-width: 1000px;">
     <div id="data-box" class="col-md-12">
+        <div class="container text-center">
+                {% if error %}
+                <div class="alert alert-success" role="alert">
+                    {{ error }}
+                  </div>
+                {% endif %}
+        </div>
         <form id="data-form" class="form" action="" method="post">
             {% csrf_token %}
-            <h3 class="text-center text-info">اطلاعات خود را وارد کنید</h3>
+            <h3 class="text-center text-info m-3">اطلاعات خود را وارد کنید</h3>
             {{ form.as_p }}
+            <div class = "d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary mb-3">تایید</button>
+            </div>
         </form>
     </div>
 </div>

@@ -1,0 +1,33 @@
+{% extends "Userdata/base.html" %}
+{% load static %}
+{% block title %} ورود {% endblock title %}
+{% block nav-style %} mkt-nav {% endblock nav-style %}
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="{% static 'accounts/loginstyle.css' %}" rel="stylesheet">
+<!------ Include the above in your HEAD tag ---------->
+{% block content %}
+
+
+
+
+<div class="container-fluid" style="max-width: 1000px;">
+    <div id="data-box" class="col-md-12">
+        <div class="container text-center">
+                {% if error %}
+                <div class="alert alert-success" role="alert">
+                    {{ error }}
+                  </div>
+                {% endif %}
+            <h3 class="text-center text-info m-3">گیاه را انتخاب کنید</h3>
+            {% for k in Planet_name %}
+
+            <div class = "d-flex justify-content-center mt-3"><a class="btn btn-primary" href="{}" role="button">{{ k.nitrozhen|default_if_none:"&nbsp;" }}</a></div>
+
+            {% endfor %}  
+    </div>
+</div>
+
+
+{% endblock content %}
